@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bellevue Youth Wellness Initiative | Play Strong, Stay Strong</title>
+<meta name="description" content="A student-led wellness initiative helping middle and high school athletes build lifelong healthy habits through injury prevention, nutrition, recovery, and movement education.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F6F0;
+    --paper-dim:#ECEEE4;
+    --ink:#16211C;
+    --pine:#24402B;
+    --pine-deep:#152A1B;
+    --track:#FF5A1F;
+    --track-dark:#DE4A15;
+    --lane:#34607D;
+    --mist:#D9E0D2;
+    --muted:#55635A;
+    --white:#FFFFFF;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:1.02;
+    margin:0;
+    color:var(--pine-deep);
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--track-dark);
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  img{max-width:100%; display:block;}
+
+  /* Lane-line signature motif */
+  .lanes{
+    position:relative;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(22,33,28,0.07) 0px,
+      rgba(22,33,28,0.07) 2px,
+      transparent 2px,
+      transparent 46px
+    );
+  }
+  .lane-tick{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+  }
+
+  /* ===== Nav ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,246,240,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--mist);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none;
+  }
+  .logo-mark{
+    width:34px; height:34px; background:var(--pine); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-mark svg{width:19px; height:19px;}
+  .logo-text{
+    font-family:'Anton', sans-serif;
+    font-size:16px;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    color:var(--pine-deep);
+    line-height:1.05;
+  }
+  .logo-text span{display:block; font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.12em; color:var(--track-dark); font-weight:600; margin-top:2px;}
+
+  nav.links{display:flex; gap:28px; align-items:center;}
+  nav.links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink);
+    padding:6px 0;
+    border-bottom:2px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.links a:hover{border-color:var(--track); color:var(--track-dark);}
+  .nav-cta{
+    background:var(--track); color:var(--white) !important;
+    padding:10px 18px !important; border-radius:var(--radius);
+    border-bottom:none !important;
+  }
+  .nav-cta:hover{background:var(--track-dark) !important;}
+
+  #menu-toggle{display:none;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px;}
+  .burger span{width:24px; height:2px; background:var(--ink); display:block;}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .hero h1{
+    font-size:clamp(42px, 7vw, 84px);
+    max-width:820px;
+    margin-top:18px;
+  }
+  .hero h1 em{font-style:normal; color:var(--track);}
+  .hero-sub{
+    max-width:560px;
+    font-size:18px;
+    color:var(--muted);
+    margin-top:22px;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600; font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:15px 26px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    display:inline-block;
+    border:2px solid var(--pine-deep);
+    transition:transform .12s ease, background .15s ease, color .15s ease;
+  }
+  .btn-solid{background:var(--pine-deep); color:var(--white);}
+  .btn-solid:hover{background:var(--track); border-color:var(--track); transform:translateY(-2px);}
+  .btn-outline{background:transparent; color:var(--pine-deep);}
+  .btn-outline:hover{background:var(--pine-deep); color:var(--white); transform:translateY(-2px);}
+
+  .fact-strip{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--mist);
+    border-bottom:1px solid var(--mist);
+  }
+  .fact{
+    padding:18px 22px;
+    border-right:1px solid var(--mist);
+  }
+  .fact:last-child{border-right:none;}
+  .fact-val{font-family:'Anton', sans-serif; font-size:22px; color:var(--pine-deep); text-transform:uppercase;}
+  .fact-label{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:4px;}
+
+  /* ===== Section shell ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(30px,4.2vw,46px); margin-top:12px;}
+  .section-head p{color:var(--muted); font-size:16.5px; margin-top:16px;}
+  .divider{height:1px; background:var(--mist); border:none;}
+
+  /* ===== Mission ===== */
+  .mission-quote{
+    background:var(--pine-deep);
+    color:var(--paper);
+    padding:56px;
+    border-radius:var(--radius);
+    position:relative;
+  }
+  .mission-quote .eyebrow{color:var(--track);}
+  .mission-quote p{
+    font-family:'Anton', sans-serif;
+    text-transform:none;
+    font-size:clamp(22px,3vw,32px);
+    line-height:1.28;
+    margin-top:16px;
+    max-width:820px;
+  }
+
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--mist);
+    margin-top:48px;
+    border:1px solid var(--mist);
+  }
+  .pillar{
+    background:var(--paper);
+    padding:30px 24px;
+  }
+  .pillar-icon{width:36px; height:36px; color:var(--track);}
+  .pillar h3{font-size:17px; margin-top:18px; letter-spacing:0.01em;}
+  .pillar p{font-size:14.5px; color:var(--muted); margin-top:10px;}
+
+  /* ===== Programs ===== */
+  .program-card{
+    background:var(--white);
+    border:1px solid var(--mist);
+    border-radius:var(--radius);
+    padding:44px;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:44px;
+  }
+  .program-card h3{font-size:clamp(26px,3.4vw,38px); margin-top:10px;}
+  .program-card .lede{color:var(--muted); margin-top:16px; font-size:16px;}
+  .topic-list{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:0;}
+  .topic-list li{
+    display:flex; align-items:baseline; gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--mist);
+    font-size:15.5px;
+  }
+  .topic-list li:last-child{border-bottom:1px solid var(--mist);}
+  .topic-num{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--track-dark); font-weight:600;}
+  .how-box{background:var(--paper-dim); padding:28px; border-radius:var(--radius); align-self:start;}
+  .how-box .eyebrow{display:block; margin-bottom:14px;}
+  .how-box p{font-size:15px; color:var(--muted); margin:0 0 14px;}
+  .how-box p:last-child{margin-bottom:0;}
+  .how-box strong{color:var(--pine-deep);}
+
+  /* ===== Founder ===== */
+  .founder{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:52px;
+    align-items:start;
+  }
+  .founder-avatar{
+    width:100%; aspect-ratio:1; background:var(--pine);
+    border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--paper);
+    font-family:'Anton', sans-serif;
+    font-size:88px;
+  }
+  .founder-body h2{font-size:clamp(28px,3.6vw,40px);}
+  .founder-role{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--track-dark); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:8px; display:block;}
+  .founder-body p{margin-top:18px; font-size:16px; color:var(--ink);}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.04em;
+    padding:7px 12px; border:1px solid var(--mist); border-radius:20px; color:var(--muted);
+  }
+
+  /* ===== Forms ===== */
+  .forms-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .form-card{background:var(--white); border:1px solid var(--mist); border-radius:var(--radius); padding:38px;}
+  .form-card .eyebrow{display:block;}
+  .form-card h3{font-size:24px; margin-top:10px;}
+  .form-card > p{color:var(--muted); font-size:14.5px; margin-top:10px; margin-bottom:26px;}
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--pine-deep); margin-bottom:7px;
+  }
+  .field input[type=text],
+  .field input[type=email],
+  .field input[type=tel],
+  .field select,
+  .field textarea{
+    width:100%; padding:12px 13px; font-family:'Work Sans', sans-serif; font-size:14.5px;
+    border:1px solid var(--mist); border-radius:var(--radius); background:var(--paper);
+    color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:88px;}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--track); outline-offset:1px; border-color:var(--track);
+  }
+  .check-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .check-item{display:flex; align-items:center; gap:9px; font-size:13.5px;}
+  .check-item input{width:16px; height:16px; accent-color:var(--track); flex-shrink:0;}
+  .submit-btn{
+    width:100%; margin-top:6px;
+    background:var(--pine-deep); color:var(--white); border:none;
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:15px; border-radius:var(--radius); cursor:pointer;
+    transition:background .15s ease;
+  }
+  .submit-btn:hover{background:var(--track);}
+  .form-note{font-size:12px; color:var(--muted); margin-top:12px;}
+  .confirm-msg{
+    display:none; background:var(--pine-deep); color:var(--paper); padding:18px; border-radius:var(--radius);
+    font-size:14.5px; margin-top:16px;
+  }
+  .confirm-msg strong{color:var(--track);}
+
+  /* ===== Contact / Footer ===== */
+  footer{background:var(--pine-deep); color:var(--paper); padding:64px 0 32px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(245,246,240,0.15);}
+  footer h3{color:var(--paper); font-size:22px;}
+  footer .eyebrow{color:var(--track);}
+  footer p, footer a{color:rgba(245,246,240,0.75); font-size:14.5px; text-decoration:none;}
+  footer .col-title{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--paper); margin-bottom:14px; font-weight:600;}
+  footer .col a{display:block; margin-bottom:10px;}
+  footer .col a:hover{color:var(--track);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:12.5px; color:rgba(245,246,240,0.5); flex-wrap:wrap; gap:10px;}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .pillars{grid-template-columns:1fr 1fr;}
+    .fact-strip{grid-template-columns:1fr 1fr;}
+    .fact:nth-child(2){border-right:none;}
+    .fact:nth-child(3){border-top:1px solid var(--mist);}
+    .program-card{grid-template-columns:1fr;}
+    .founder{grid-template-columns:1fr;}
+    .founder-avatar{width:140px; height:140px; font-size:52px;}
+    .forms-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; gap:28px;}
+    .check-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F5F6F0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12 L6 12 L8 6 L10 17 L12 9 L14 12 L17 12 L21 5"/>
+          <path d="M21 5 L17.3 6.3"/>
+          <path d="M21 5 L19.7 8.7"/>
+        </svg>
+      </span>
+      <span class="logo-text">Bellevue Youth<br>Wellness Initiative<span>Play Strong, Stay Strong</span></span>
+    </a>
+    <nav class="links">
+      <a href="#mission">Mission</a>
+      <a href="#programs">Programs</a>
+      <a href="events.html">Events</a>
+      <a href="#founder">Founder</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#partner">Partner</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="links" id="mobileMenu" style="display:none; flex-direction:column; padding:0 28px 20px; gap:16px;">
+    <a href="#mission">Mission</a>
+    <a href="#programs">Programs</a>
+    <a href="events.html">Events</a>
+    <a href="#founder">Founder</a>
+    <a href="#volunteer">Volunteer</a>
+    <a href="#partner">Partner</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div id="top"></div>
+
+<section class="hero lanes">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Student-Led &nbsp;·&nbsp; Bellevue, WA &nbsp;·&nbsp; Est. 2026</span>
+    <h1>Play strong.<br><em>Stay strong.</em></h1>
+    <p class="hero-sub">A free youth wellness workshop series that helps middle school athletes build lifelong healthy habits — through injury prevention, nutrition, recovery, and movement education, taught by professionals and led by students.</p>
+    <div class="hero-ctas">
+      <a href="#volunteer" class="btn btn-solid">Volunteer with us</a>
+      <a href="#partner" class="btn btn-outline">Partner with us</a>
+    </div>
+    <div class="fact-strip">
+      <div class="fact"><div class="fact-val">Free</div><div class="fact-label">Every workshop</div></div>
+      <div class="fact"><div class="fact-val">4</div><div class="fact-label">Core content areas</div></div>
+      <div class="fact"><div class="fact-val">Bellevue, WA</div><div class="fact-label">Where we operate</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="mission">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Mission</span>
+      <h2>Why we exist</h2>
+    </div>
+    <div class="mission-quote">
+      <span class="eyebrow">Our mission</span>
+      <p>Our mission empowers middle and high school students to build lifelong healthy habits through evidence-based education, injury prevention, nutrition, movement, and community service.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-8 11-.7.5-1.3.5-2 0z"/></svg>
+        <h3>Injury Prevention</h3>
+        <p>Warm-ups, movement mechanics, and habits that keep young athletes on the field and off the sidelines.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-4 3-6 6-6 10a6 6 0 0 0 12 0c0-4-2-7-6-10z"/></svg>
+        <h3>Nutrition &amp; Hydration</h3>
+        <p>Practical, age-appropriate fueling and hydration habits that support growth, energy, and performance.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 8-8 6.5 6.5 0 0 0 4.5 2A8.5 8.5 0 0 1 4 12z"/></svg>
+        <h3>Sleep &amp; Recovery</h3>
+        <p>Recovery science made simple — why rest is training, and how to build routines that stick.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M12 10l6-4M12 10 6 6M6 6v6M18 6v6"/></svg>
+        <h3>Healthy Athletic Habits</h3>
+        <p>Balancing academics, sport, and rest — the everyday habits that make performance sustainable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Flagship Program</span>
+      <h2>Play Strong, Stay Strong</h2>
+      <p>Our first and only program for now — one credible workshop series for athletes ages 11–14, done well, before we do anything else.</p>
+    </div>
+
+    <div class="program-card">
+      <div>
+        <span class="eyebrow">Workshop Series</span>
+        <h3>A free wellness series for middle school athletes</h3>
+        <p class="lede">Play Strong, Stay Strong brings athletic trainers, physical therapists, and nutrition professionals directly to student athletes — with a student team handling everything from outreach to on-the-ground demos.</p>
+        <ul class="topic-list">
+          <li><span class="topic-num">01</span> Injury prevention and warm-ups</li>
+          <li><span class="topic-num">02</span> Mobility and recovery</li>
+          <li><span class="topic-num">03</span> Hydration and nutrition</li>
+          <li><span class="topic-num">04</span> Sleep and healthy routines</li>
+          <li><span class="topic-num">05</span> Balancing academics and sports</li>
+        </ul>
+      </div>
+      <div class="how-box">
+        <span class="eyebrow">How it works</span>
+        <p><strong>Professionals</strong> lead the medical and technical content — athletic trainers, PTs, and nutrition experts volunteer their expertise.</p>
+        <p><strong>Students organize</strong> — our team handles scheduling, promotion, expert interviews, and student-friendly materials.</p>
+        <p><strong>Athletes leave with real tools</strong> — simple routines they can actually use in season, not just information.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="founder">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Founder Story</span>
+      <h2>Started by an athlete, for athletes</h2>
+    </div>
+    <div class="founder">
+      <div class="founder-avatar">D</div>
+      <div class="founder-body">
+        <h2>Desmond</h2>
+        <span class="founder-role">Founder, Bellevue Youth Wellness Initiative</span>
+        <p>Desmond founded the Bellevue Youth Wellness Initiative after seeing the same gap show up again and again: young athletes are pushed to train hard, but rarely taught how to take care of their bodies while they do it.</p>
+        <p>That gap became personal through his own experience competing in fencing and basketball, where he learned firsthand how much injury prevention, recovery, and nutrition shape whether an athlete keeps improving or keeps getting hurt. Time spent in a physical therapy clinic showed him what evidence-based care actually looks like up close, and his work with T-BUG and the National Youth Leadership Movement (NLYM) gave him a model for organizing student-led service that actually reaches the people it's meant for.</p>
+        <p>Play Strong, Stay Strong is Desmond's attempt to put all of that in one place: real expertise from professionals, translated by students, for the middle schoolers who need it most.</p>
+        <div class="tag-row">
+          <span class="tag">Fencing</span>
+          <span class="tag">Basketball</span>
+          <span class="tag">PT Clinic Experience</span>
+          <span class="tag">T-BUG Service</span>
+          <span class="tag">NLYM</span>
+          <span class="tag">Strength Training</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="get-involved">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Get Involved</span>
+      <h2>Volunteer or partner with us</h2>
+      <p>We're building our founding team and our first partnerships. Tell us how you'd like to be involved.</p>
+    </div>
+
+    <div class="forms-grid">
+      <!-- VOLUNTEER FORM -->
+      <div class="form-card" id="volunteer">
+        <span class="eyebrow">For Students &amp; Community Members</span>
+        <h3>Volunteer interest form</h3>
+        <p>Help organize workshops, create content, or support Play Strong, Stay Strong on the ground.</p>
+        <!--FORM-NOTE-VOLUNTEER-->
+        <form id="volunteerForm" action="https://formspree.io/f/mpqvdrll" method="POST">
+          <div class="field">
+            <label for="v-name">Full name</label>
+            <input type="text" id="v-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="v-email">Email</label>
+            <input type="email" id="v-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="v-school">School &amp; grade (or role, if not a student)</label>
+            <input type="text" id="v-school" name="school_grade" placeholder="e.g. Somewhere Middle School, 8th grade">
+          </div>
+          <div class="field">
+            <label>Areas of interest</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="interest" value="Event support"> Event support</label>
+              <label class="check-item"><input type="checkbox" name="interest" value="Content creation"> Content creation</label>
+              <label class="check-item"><input type="checkbox" name="interest" value="Social media"> Social media</label>
+              <label class="check-item"><input type="checkbox" name="interest" value="Workshop demos"> Workshop demos</label>
+              <label class="check-item"><input type="checkbox" name="interest" value="Outreach"> Outreach</label>
+              <label class="check-item"><input type="checkbox" name="interest" value="Admin/logistics"> Admin/logistics</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="v-message">Anything else we should know?</label>
+            <textarea id="v-message" name="message"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit interest</button>
+        </form>
+        <div class="confirm-msg" id="v-confirm"><strong>Thanks!</strong> We've received your interest and will follow up by email.</div>
+        <p class="form-note">Submissions are sent via Formspree straight to our inbox.</p>
+      </div>
+
+      <!-- PARTNER FORM -->
+      <div class="form-card" id="partner">
+        <span class="eyebrow">For Clinics, Coaches &amp; Organizations</span>
+        <h3>Partner interest form</h3>
+        <p>Provide expertise, host a workshop, sponsor materials, or co-promote Play Strong, Stay Strong.</p>
+
+        <form id="partnerForm" action="https://formspree.io/f/mpqvdrll" method="POST">
+          <div class="field">
+            <label for="p-org">Organization / business name</label>
+            <input type="text" id="p-org" name="organization" required>
+          </div>
+          <div class="field">
+            <label for="p-contact">Contact name</label>
+            <input type="text" id="p-contact" name="contact_name" required>
+          </div>
+          <div class="field">
+            <label for="p-email">Email</label>
+            <input type="email" id="p-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="p-phone">Phone (optional)</label>
+            <input type="tel" id="p-phone" name="phone">
+          </div>
+          <div class="field">
+            <label for="p-type">Type of partnership</label>
+            <select id="p-type" name="partnership_type">
+              <option>Professional speaker / presenter</option>
+              <option>Workshop host site</option>
+              <option>Equipment or resource donor</option>
+              <option>Sponsor</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="p-message">Tell us more</label>
+            <textarea id="p-message" name="message"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit interest</button>
+        </form>
+        <div class="confirm-msg" id="p-confirm"><strong>Thanks!</strong> We've received your interest and will follow up by email.</div>
+        <p class="form-note">Submissions are sent via Formspree straight to our inbox.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h3>Let's build something<br>credible, together.</h3>
+        <p style="margin-top:16px;">Whether you're a student, a coach, a clinic, or a parent — we'd love to hear from you.</p>
+      </div>
+      <div class="col">
+        <div class="col-title">Get in Touch</div>
+        <a href="mailto:thebellevueywi@gmail.com">thebellevueywi@gmail.com</a>
+        <a href="#">Bellevue, WA</a>
+      </div>
+      <div class="col">
+        <div class="col-title">Explore</div>
+        <a href="#mission">Mission</a>
+        <a href="#programs">Programs</a>
+        <a href="events.html">Events</a>
+        <a href="#founder">Founder Story</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#partner">Partner</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bellevue Youth Wellness Initiative. Student-led. Community-built.</span>
+      <span>Play Strong, Stay Strong</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.style.display === 'flex';
+    mobileMenu.style.display = isOpen ? 'none' : 'flex';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
+  });
+
+  // Lightweight AJAX submit with graceful fallback to normal POST
+  function wireForm(formId, confirmId){
+    const form = document.getElementById(formId);
+    const confirmBox = document.getElementById(confirmId);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try{
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if(res.ok){
+          confirmBox.style.display = 'block';
+          form.reset();
+        } else {
+          alert('Something went wrong submitting the form. Please try again or email us directly.');
+        }
+      }catch(err){
+        alert('Something went wrong submitting the form. Please try again or email us directly.');
+      }
+    });
+  }
+  wireForm('volunteerForm','v-confirm');
+  wireForm('partnerForm','p-confirm');
+</script>
+
+</body>
+</html>
